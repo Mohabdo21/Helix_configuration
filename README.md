@@ -34,7 +34,7 @@ Please ensure these language servers are installed and properly configured on yo
 To use these configurations, clone this repository and copy the `config.toml` and `languages.toml` files to your Helix configuration directory (usually `~/.config/helix`). Then, restart Helix to apply the new configurations.
 
 ```bash
-git clone <this-repo-url>
+git clone https://github.com/Mohabdo21/Helix_configuration.git
 cp config.toml ~/.config/helix/
 cp languages.toml ~/.config/helix/
 ```

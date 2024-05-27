@@ -1,0 +1,151 @@
+# Language server configurations
+[language-server]
+pyright = { command = "pyright-langserver", args = ["--stdio"] }
+tsserver = { command = "typescript-language-server", args = ["--stdio"] }
+html = { command = "vscode-html-languageserver", args = ["--stdio"] }
+deno = { command = "deno", args = [ "lsp" ]}
+emmet-ls = { command = "emmet-ls", args = [ "--stdio" ]}
+
+# Python language configuration
+[[language]]
+name = "python"
+scope = "source.python"
+injection-regex = "python"
+file-types = ["py", "pyi", "py3", "pyw", "ptl", "rpy", "cpy", "ipy", "pyt", { glob = ".python_history" }, { glob = ".pythonstartup" }, { glob = ".pythonrc" }, { glob = "SConstruct" }, { glob = "SConscript" }]
+auto-format = true
+shebangs = ["python3", "python"]
+roots = ["pyproject.toml", "setup.py", "poetry.lock", "pyrightconfig.json"]
+comment-token = "#"
+indent = { tab-width = 4, unit = "    " }
+formatter = { command = "autopep8", args = ["-"] }
+language-servers = ["pyright"]
+
+# Grammar configuration for Python syntax highlighting
+[[grammar]]
+name = "python"
+source = { git = "https://github.com/tree-sitter/tree-sitter-python", rev = "71778c2a472ed00a64abf4219544edbf8e4b86d7" }
+
+# Diagnostic tool configuration for Python
+[[diagnostic]]
+name = "flake8"
+command = "flake8"
+args = ["--stdin-display-name", "%file", "-"]
+root-patterns = ["pyproject.toml", "setup.py", "tox.ini", ".flake8", "setup.cfg"]
+
+
+# Readme
+[[language]]
+name = "markdown"
+scope = "text.markdown"
+file-types = ["md", "markdown"]
+auto-format = true
+formatter = { command = "prettier", args = ["--stdin-filepath", "%file"] }
+
+[[language]]
+name = "makefile"
+scope = "source.makefile"
+file-types = ["Makefile"]
+auto-format = true
+
+[[language]]
+name = "c"
+scope = "source.c"
+file-types = ["c", "h"]
+auto-format = true
+formatter = { command = "clang-format", args = ["-style=file", "-assume-filename=%file"] }
+language-servers = ["clangd"]
+
+[language-server.eslint]
+command = "vscode-eslint-language-server"
+args = ["--stdio"]
+
+[language-server.eslint.config]
+codeActionsOnSave = { mode = "all", "source.fixAll.eslint" = true }
+format = { enable = true }
+nodePath = ""
+quiet = false
+rulesCustomizations = []
+run = "onType"
+validate = "on"
+experimental = {}
+problems = { shortenToSingleLine = false }
+
+[language-server.eslint.config.codeAction]
+disableRuleComment = { enable = true, location = "separateLine" }
+showDocumentation = { enable = false }
+
+[language-server.vscode-json-language-server.config]
+json = { validate = { enable = true }, format = { enable = true } }
+provideFormatter = true
+
+[language-server.vscode-css-language-server.config]
+css = { validate = { enable = true } }
+scss = { validate = { enable = true } }
+less = { validate = { enable = true } }
+provideFormatter = true
+
+
+[[language]]
+name = "typescript"
+language-servers = [ "typescript-language-server", "eslint", "emmet-ls" ]
+# formatter = { command = "prettier", args = [ "--parser", "typescript" ] }
+formatter = { command = "dprint", args = [ "fmt", "--stdin", "typescript" ] }
+auto-format = true
+
+[[language]]
+name = "tsx"
+language-servers = [ "deno", "eslint", "emmet-ls" ]
+# formatter = { command = "prettier", args = [ "--parser", "typescript" ] }
+formatter = { command = "dprint", args = [ "fmt", "--stdin", "tsx" ] }
+auto-format = true
+
+[[language]]
+name = "javascript"
+language-servers = [ "typescript-language-server", "eslint", "emmet-ls" ]
+# formatter = { command = "prettier", args = [ "--parser", "typescript" ] }
+formatter = { command = "dprint", args = [ "fmt", "--stdin", "javascript" ] }
+auto-format = true
+
+[[language]]
+name = "jsx"
+language-servers = [ "typescript-language-server", "eslint", "emmet-ls" ]
+# formatter = { command = "prettier", args = [ "--parser", "typescript" ] }
+formatter = { command = "dprint", args = [ "fmt", "--stdin", "jsx" ] }
+auto-format = true
+
+[[language]]
+name = "json"
+# formatter = { command = "prettier", args = [ "--parser", "json" ] }
+formatter = { command = "dprint", args = [ "fmt", "--stdin", "json" ] }
+auto-format = true
+
+[[language]]
+name = "html"
+language-servers = [ "vscode-html-language-server", "emmet-ls" ]
+formatter = { command = 'prettier', args = ["--parser", "html"] }
+auto-format = true
+
+[[language]]
+name = "css"
+language-servers = [ "vscode-css-language-server", "emmet-ls" ]
+formatter = { command = 'prettier', args = ["--parser", "css"] }
+auto-format = true
+
+# Grammar configurations for syntax highlighting
+[[grammar]]
+name = "javascript"
+source = { git = "https://github.com/tree-sitter/tree-sitter-javascript", rev = "ce29c27450810249dde98ca9d0d95b6ae25fe154" }
+
+[[grammar]]
+name = "typescript"
+source = { git = "https://github.com/tree-sitter/tree-sitter-typescript", rev = "c3157220abff3a33718cc8bdb975a5a83550cd65", path = "typescript" }
+
+[[grammar]]
+name = "html"
+source = { git = "https://github.com/tree-sitter/tree-sitter-html", rev = "e4d834eb4918df01dcad5c27d1b15d56e3bd94cd" }
+
+[[grammar]]
+name = "typescriptreact"
+source = { git = "https://github.com/tree-sitter/tree-sitter-typescript", rev = "c3157220abff3a33718cc8bdb975a5a83550cd65", path = "tsx" }
+
+

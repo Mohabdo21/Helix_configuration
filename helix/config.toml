@@ -1,0 +1,43 @@
+# Helix Configuration
+theme = "github_dark"
+
+[editor]
+line-number = "relative"
+color-modes = true
+auto-pairs = true
+auto-format = true
+true-color = true
+mouse = true
+bufferline = "multiple"
+cursorline = true
+rulers = [120]
+auto-completion = true
+completion-replace = true
+completion-timeout = 3
+
+# Indentation Guides Configuration
+[editor.indent-guides]
+character = "╎"
+render = true
+
+# Cursor Shape Configuration
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
+
+# LSP Configuration
+[editor.lsp]
+enable = true
+snippets = true
+auto-signature-help = true
+display-messages = true
+
+# File Picker Configuration
+[editor.file-picker]
+hidden = false
+
+# Statusline Configuration
+[editor.statusline]
+left = ["mode", "file-modification-indicator", "spinner", "version-control", "file-name"]
+right = ["position", "total-line-numbers", "file-type"]

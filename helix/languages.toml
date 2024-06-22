@@ -2,9 +2,18 @@
 [language-server]
 pyright = { command = "pyright-langserver", args = ["--stdio"] }
 tsserver = { command = "typescript-language-server", args = ["--stdio"] }
-html = { command = "vscode-html-languageserver", args = ["--stdio"] }
-deno = { command = "deno", args = [ "lsp" ]}
-emmet-ls = { command = "emmet-ls", args = [ "--stdio" ]}
+html = { command = "vscode-html-language-server", args = ["--stdio"] }
+deno = { command = "deno", args = ["lsp"] }
+emmet-ls = { command = "emmet-ls", args = ["--stdio"] }
+bash-language-server = { command = "bash-language-server", args = ["start"] }
+vscode-css-language-server = { command = "vscode-css-language-server", args = ["--stdio"] }
+docker-compose-langserver = { command = "docker-compose-langserver", args = [] }
+yaml-language-server = { command = "yaml-language-server", args = ["--stdio"] }
+docker-langserver = { command = "docker-langserver", args = ["--stdio"] }
+gopls = { command = "gopls", args = ["serve"] }
+vscode-json-language-server = { command = "vscode-json-language-server", args = ["--stdio"] }
+markdown-oxide = { command = "markdown-oxide", args = [] }
+pylsp = { command = "pylsp", args = [] }
 
 # Python language configuration
 [[language]]
@@ -18,7 +27,7 @@ roots = ["pyproject.toml", "setup.py", "poetry.lock", "pyrightconfig.json"]
 comment-token = "#"
 indent = { tab-width = 4, unit = "    " }
 formatter = { command = "autopep8", args = ["-"] }
-language-servers = ["pyright"]
+language-servers = ["pyright", "pylsp"]
 
 # Grammar configuration for Python syntax highlighting
 [[grammar]]
@@ -32,21 +41,25 @@ command = "flake8"
 args = ["--stdin-display-name", "%file", "-"]
 root-patterns = ["pyproject.toml", "setup.py", "tox.ini", ".flake8", "setup.cfg"]
 
-
-# Readme
+# Markdown language configuration
 [[language]]
 name = "markdown"
 scope = "text.markdown"
 file-types = ["md", "markdown"]
 auto-format = true
 formatter = { command = "prettier", args = ["--stdin-filepath", "%file"] }
+indent = { tab-width = 2, unit = "  " }
+language-servers = ["markdown-oxide"]
 
+# Makefile language configuration
 [[language]]
 name = "makefile"
 scope = "source.makefile"
 file-types = ["Makefile"]
 auto-format = true
+indent = { tab-width = 4, unit = "\t" }
 
+# C language configuration
 [[language]]
 name = "c"
 scope = "source.c"
@@ -54,98 +67,143 @@ file-types = ["c", "h"]
 auto-format = true
 formatter = { command = "clang-format", args = ["-style=file", "-assume-filename=%file"] }
 language-servers = ["clangd"]
+indent = { tab-width = 4, unit = "    " }
 
-[language-server.eslint]
-command = "vscode-eslint-language-server"
-args = ["--stdio"]
-
-[language-server.eslint.config]
-codeActionsOnSave = { mode = "all", "source.fixAll.eslint" = true }
-format = { enable = true }
-nodePath = ""
-quiet = false
-rulesCustomizations = []
-run = "onType"
-validate = "on"
-experimental = {}
-problems = { shortenToSingleLine = false }
-
-[language-server.eslint.config.codeAction]
-disableRuleComment = { enable = true, location = "separateLine" }
-showDocumentation = { enable = false }
-
-[language-server.vscode-json-language-server.config]
-json = { validate = { enable = true }, format = { enable = true } }
-provideFormatter = true
-
-[language-server.vscode-css-language-server.config]
-css = { validate = { enable = true } }
-scss = { validate = { enable = true } }
-less = { validate = { enable = true } }
-provideFormatter = true
-
-
-[[language]]
-name = "typescript"
-language-servers = [ "typescript-language-server", "eslint", "emmet-ls" ]
-# formatter = { command = "prettier", args = [ "--parser", "typescript" ] }
-formatter = { command = "dprint", args = [ "fmt", "--stdin", "typescript" ] }
-auto-format = true
-
-[[language]]
-name = "tsx"
-language-servers = [ "deno", "eslint", "emmet-ls" ]
-# formatter = { command = "prettier", args = [ "--parser", "typescript" ] }
-formatter = { command = "dprint", args = [ "fmt", "--stdin", "tsx" ] }
-auto-format = true
-
-[[language]]
-name = "javascript"
-language-servers = [ "typescript-language-server", "eslint", "emmet-ls" ]
-# formatter = { command = "prettier", args = [ "--parser", "typescript" ] }
-formatter = { command = "dprint", args = [ "fmt", "--stdin", "javascript" ] }
-auto-format = true
-
-[[language]]
-name = "jsx"
-language-servers = [ "typescript-language-server", "eslint", "emmet-ls" ]
-# formatter = { command = "prettier", args = [ "--parser", "typescript" ] }
-formatter = { command = "dprint", args = [ "fmt", "--stdin", "jsx" ] }
-auto-format = true
-
-[[language]]
-name = "json"
-# formatter = { command = "prettier", args = [ "--parser", "json" ] }
-formatter = { command = "dprint", args = [ "fmt", "--stdin", "json" ] }
-auto-format = true
-
-[[language]]
-name = "html"
-language-servers = [ "vscode-html-language-server", "emmet-ls" ]
-formatter = { command = 'prettier', args = ["--parser", "html"] }
-auto-format = true
-
+# CSS language configuration
 [[language]]
 name = "css"
-language-servers = [ "vscode-css-language-server", "emmet-ls" ]
-formatter = { command = 'prettier', args = ["--parser", "css"] }
+scope = "source.css"
+file-types = ["css"]
 auto-format = true
+formatter = { command = "prettier", args = ["--parser", "css"] }
+indent = { tab-width = 2, unit = "  " }
+language-servers = ["vscode-css-language-server", "emmet-ls"]
+
+# HTML language configuration
+[[language]]
+name = "html"
+scope = "text.html.basic"
+file-types = ["html"]
+auto-format = true
+formatter = { command = "prettier", args = ["--parser", "html"] }
+indent = { tab-width = 2, unit = "  " }
+language-servers = ["vscode-html-language-server", "emmet-ls"]
+
+# JSON language configuration
+[[language]]
+name = "json"
+scope = "source.json"
+file-types = ["json"]
+auto-format = true
+formatter = { command = "prettier", args = ["--parser", "json"] }
+indent = { tab-width = 2, unit = "  " }
+language-servers = ["vscode-json-language-server"]
+
+# TypeScript language configuration
+[[language]]
+name = "typescript"
+scope = "source.ts"
+file-types = ["ts"]
+auto-format = true
+formatter = { command = "dprint", args = ["fmt", "--stdin", "typescript"] }
+indent = { tab-width = 2, unit = "  " }
+language-servers = ["typescript-language-server", "eslint", "emmet-ls"]
+
+# TSX language configuration
+[[language]]
+name = "tsx"
+scope = "source.tsx"
+file-types = ["tsx"]
+auto-format = true
+formatter = { command = "dprint", args = ["fmt", "--stdin", "tsx"] }
+indent = { tab-width = 2, unit = "  " }
+language-servers = ["deno", "eslint", "emmet-ls"]
+
+# JavaScript language configuration
+[[language]]
+name = "javascript"
+scope = "source.js"
+file-types = ["js"]
+auto-format = true
+formatter = { command = "dprint", args = ["fmt", "--stdin", "javascript"] }
+indent = { tab-width = 2, unit = "  " }
+language-servers = ["typescript-language-server", "eslint", "emmet-ls"]
+
+# JSX language configuration
+[[language]]
+name = "jsx"
+scope = "source.jsx"
+file-types = ["jsx"]
+auto-format = true
+formatter = { command = "dprint", args = ["fmt", "--stdin", "jsx"] }
+indent = { tab-width = 2, unit = "  " }
+language-servers = ["typescript-language-server", "eslint", "emmet-ls"]
+
+# Bash language configuration
+[[language]]
+name = "bash"
+scope = "source.shell"
+file-types = ["sh", "bash"]
+auto-format = true
+formatter = { command = "shfmt", args = ["-"] }
+indent = { tab-width = 4, unit = "    " }
+language-servers = ["bash-language-server"]
+
+# Dockerfile language configuration
+[[language]]
+name = "dockerfile"
+scope = "source.dockerfile"
+file-types = ["Dockerfile"]
+auto-format = true
+indent = { tab-width = 2, unit = "  " }
+language-servers = ["docker-langserver"]
+
+# Docker Compose language configuration
+[[language]]
+name = "docker-compose"
+scope = "source.yaml.docker-compose"
+file-types = ["docker-compose.yml"]
+auto-format = true
+indent = { tab-width = 2, unit = "  " }
+language-servers = ["docker-compose-langserver", "yaml-language-server"]
+
+# YAML language configuration
+[[language]]
+name = "yaml"
+scope = "source.yaml"
+file-types = ["yaml", "yml"]
+auto-format = true
+formatter = { command = "prettier", args = ["--parser", "yaml"] }
+indent = { tab-width = 2, unit = "  " }
+language-servers = ["yaml-language-server"]
 
 # Grammar configurations for syntax highlighting
 [[grammar]]
 name = "javascript"
+scope = "source.js"
 source = { git = "https://github.com/tree-sitter/tree-sitter-javascript", rev = "ce29c27450810249dde98ca9d0d95b6ae25fe154" }
 
 [[grammar]]
 name = "typescript"
+scope = "source.ts"
 source = { git = "https://github.com/tree-sitter/tree-sitter-typescript", rev = "c3157220abff3a33718cc8bdb975a5a83550cd65", path = "typescript" }
 
 [[grammar]]
 name = "html"
+scope = "text.html.basic"
 source = { git = "https://github.com/tree-sitter/tree-sitter-html", rev = "e4d834eb4918df01dcad5c27d1b15d56e3bd94cd" }
 
 [[grammar]]
 name = "typescriptreact"
+scope = "source.tsx"
 source = { git = "https://github.com/tree-sitter/tree-sitter-typescript", rev = "c3157220abff3a33718cc8bdb975a5a83550cd65", path = "tsx" }
 
+[[grammar]]
+name = "css"
+scope = "source.css"
+source = { git = "https://github.com/tree-sitter/tree-sitter-css", rev = "4f090293885bcb2a1ff5e3c52a206ac7e31ca508" }
 
+[[grammar]]
+name = "markdown"
+scope = "text.markdown"
+source = { git = "https://github.com/tree-sitter/tree-sitter-markdown", rev = "d648397d155ea7f96e71da5cc707a1d7a12abf86" }

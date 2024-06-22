@@ -2,42 +2,43 @@
 theme = "github_dark"
 
 [editor]
-line-number = "relative"
-color-modes = true
-auto-pairs = true
-auto-format = true
-true-color = true
-mouse = true
-bufferline = "multiple"
-cursorline = true
-rulers = [120]
-auto-completion = true
-completion-replace = true
-completion-timeout = 3
+line-number = "relative"    # Displays line numbers relative to the current line
+color-modes = true          # Enables different color modes based on the file type
+auto-pairs = true           # Automatically inserts matching pairs
+auto-format = true          # Automatically formats code on save
+true-color = true           # Enables true color support
+mouse = true                # Enables mouse support
+bufferline = "multiple"     # Displays multiple buffers in the buffer line
+cursorline = true           # Highlights the current line
+rulers = [120]              # Adds a visual ruler at column 120
+auto-completion = true      # Enables auto-completion
+completion-replace = true   # Replaces text with selected completion
+completion-timeout = 3      # Sets the timeout for completions to 3 seconds
 
 # Indentation Guides Configuration
 [editor.indent-guides]
-character = "╎"
-render = true
+character = "╎"             # Character used for indentation guides
+render = true               # Enables rendering of indentation guides
 
 # Cursor Shape Configuration
 [editor.cursor-shape]
-insert = "bar"
-normal = "block"
-select = "underline"
+insert = "bar"              # Cursor shape in insert mode
+normal = "block"            # Cursor shape in normal mode
+select = "underline"        # Cursor shape in select mode
 
 # LSP Configuration
 [editor.lsp]
-enable = true
-snippets = true
-auto-signature-help = true
-display-messages = true
+enable = true               # Enables Language Server Protocol support
+snippets = true             # Enables snippet support
+auto-signature-help = true  # Automatically shows signature help
+display-messages = true     # Displays messages from the language server
 
 # File Picker Configuration
 [editor.file-picker]
-hidden = false
+hidden = false              # Shows hidden files in the file picker
 
 # Statusline Configuration
 [editor.statusline]
 left = ["mode", "file-modification-indicator", "spinner", "version-control", "file-name"]
 right = ["position", "total-line-numbers", "file-type"]
+

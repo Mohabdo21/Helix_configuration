@@ -38,7 +38,7 @@ Clone this repository to your local machine:
 
 ```sh
 git clone https://github.com/Mohabdo21/Helix_configuration.git
-cd Helix_configuration
+cd Helix_configuration/helix
 ```
 
 ### Step 3: Copy Configuration Files

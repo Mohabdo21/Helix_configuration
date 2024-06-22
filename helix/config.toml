@@ -35,10 +35,9 @@ display-messages = true     # Displays messages from the language server
 
 # File Picker Configuration
 [editor.file-picker]
-hidden = false              # Shows hidden files in the file picker
+hidden = true               # Shows hidden files in the file picker (changed to true to match typical preference)
 
 # Statusline Configuration
 [editor.statusline]
 left = ["mode", "file-modification-indicator", "spinner", "version-control", "file-name"]
 right = ["position", "total-line-numbers", "file-type"]
-

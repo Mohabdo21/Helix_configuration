@@ -15,11 +15,12 @@ vscode-json-language-server = { command = "vscode-json-language-server", args = 
 markdown-oxide = { command = "markdown-oxide", args = [] }
 pylsp = { command = "pylsp", args = [] }
 
+# Language configurations
+
 # Python language configuration
 [[language]]
 name = "python"
 scope = "source.python"
-injection-regex = "python"
 file-types = ["py", "pyi", "py3", "pyw", "ptl", "rpy", "cpy", "ipy", "pyt", { glob = ".python_history" }, { glob = ".pythonstartup" }, { glob = ".pythonrc" }, { glob = "SConstruct" }, { glob = "SConscript" }]
 auto-format = true
 shebangs = ["python3", "python"]
@@ -105,7 +106,7 @@ name = "typescript"
 scope = "source.ts"
 file-types = ["ts"]
 auto-format = true
-formatter = { command = "dprint", args = ["fmt", "--stdin", "typescript"] }
+formatter = { command = "prettier", args = ["--parser", "typescript"] }
 indent = { tab-width = 2, unit = "  " }
 language-servers = ["typescript-language-server", "eslint", "emmet-ls"]
 
@@ -115,7 +116,7 @@ name = "tsx"
 scope = "source.tsx"
 file-types = ["tsx"]
 auto-format = true
-formatter = { command = "dprint", args = ["fmt", "--stdin", "tsx"] }
+formatter = { command = "prettier", args = ["--parser", "typescript"] }
 indent = { tab-width = 2, unit = "  " }
 language-servers = ["deno", "eslint", "emmet-ls"]
 
@@ -125,7 +126,7 @@ name = "javascript"
 scope = "source.js"
 file-types = ["js"]
 auto-format = true
-formatter = { command = "dprint", args = ["fmt", "--stdin", "javascript"] }
+formatter = { command = "prettier", args = ["--parser", "babel"] }
 indent = { tab-width = 2, unit = "  " }
 language-servers = ["typescript-language-server", "eslint", "emmet-ls"]
 
@@ -135,7 +136,7 @@ name = "jsx"
 scope = "source.jsx"
 file-types = ["jsx"]
 auto-format = true
-formatter = { command = "dprint", args = ["fmt", "--stdin", "jsx"] }
+formatter = { command = "prettier", args = ["--parser", "babel"] }
 indent = { tab-width = 2, unit = "  " }
 language-servers = ["typescript-language-server", "eslint", "emmet-ls"]
 

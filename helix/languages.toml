@@ -14,6 +14,7 @@ gopls = { command = "gopls", args = ["serve"] }
 vscode-json-language-server = { command = "vscode-json-language-server", args = ["--stdio"] }
 markdown-oxide = { command = "markdown-oxide", args = [] }
 pylsp = { command = "pylsp", args = [] }
+puppet = { command = "puppet-languageserver", args = ["--stdio"] }
 
 # Language configurations
 
@@ -178,6 +179,15 @@ formatter = { command = "prettier", args = ["--parser", "yaml"] }
 indent = { tab-width = 2, unit = "  " }
 language-servers = ["yaml-language-server"]
 
+# Puppet language configuration
+[[language]]
+name = "puppet"
+scope = "source.puppet"
+file-types = ["pp"]
+auto-format = false
+indent = { tab-width = 2, unit = "  " }
+language-servers = ["puppet"]
+
 # Grammar configurations for syntax highlighting
 [[grammar]]
 name = "javascript"
@@ -208,3 +218,8 @@ source = { git = "https://github.com/tree-sitter/tree-sitter-css", rev = "4f0902
 name = "markdown"
 scope = "text.markdown"
 source = { git = "https://github.com/tree-sitter/tree-sitter-markdown", rev = "d648397d155ea7f96e71da5cc707a1d7a12abf86" }
+
+[[grammar]]
+name = "puppet"
+scope = "source.puppet"
+source = { git = "https://github.com/tree-sitter-grammars/tree-sitter-puppet", rev = "5849f9694197a6e822872945b415429c285fdd54" }

@@ -50,6 +50,13 @@ mkdir -p ~/.config/helix
 cp config.toml languages.toml ~/.config/helix/
 ```
 
+### Step 4: Fetch & Build languages grammar (tree-sitter)
+
+```sh
+sudo hx --grammar Fetch
+sudo hx --grammar build
+```
+
 ## Installing Language Servers and Formatters
 
 The configuration files specify various Language Server Protocol (LSP) servers and formatters. Install these dependencies using the following commands:

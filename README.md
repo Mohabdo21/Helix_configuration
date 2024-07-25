@@ -53,7 +53,7 @@ cp config.toml languages.toml ~/.config/helix/
 ### Step 4: Fetch & Build languages grammar (tree-sitter)
 
 ```sh
-sudo hx --grammar Fetch
+sudo hx --grammar fetch
 sudo hx --grammar build
 ```
 

@@ -19,7 +19,7 @@ First, you need to install the Helix editor. Follow these steps:
 1. Download the latest release from the [Helix GitHub Releases](https://github.com/helix-editor/helix/releases).
 2. Extract the downloaded archive:
    ```sh
-   tar -xzf helix-vX.Y.Z-x86_64-linux.tar.gz
+   tar -xJf helix-vX.Y.Z-x86_64-linux.tar.gz
    ```
 3. Move the extracted files to `/usr/local/bin`:
    ```sh

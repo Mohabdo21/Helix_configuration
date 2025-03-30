@@ -4,11 +4,26 @@ This repository contains configuration files for the Helix editor, including `co
 
 ## Table of Contents
 
+<!--toc:start-->
+
 - [Installation](#installation)
-- [Configuration Setup](#configuration-setup)
+  - [Step 1: Install Helix Editor](#step-1-install-helix-editor)
+  - [Step 2: Clone the Configuration Repository](#step-2-clone-the-configuration-repository)
+  - [Step 3: Copy Configuration Files](#step-3-copy-configuration-files)
+  - [Step 4: Fetch & Build languages grammar (tree-sitter)](#step-4-fetch-build-languages-grammar-tree-sitter)
 - [Installing Language Servers and Formatters](#installing-language-servers-and-formatters)
+  - [Python](#python)
+  - [TypeScript and JavaScript](#typescript-and-javascript)
+  - [HTML, CSS, JSON, YAML](#html-css-json-yaml)
+  - [Bash](#bash)
+  - [Docker](#docker)
+  - [Markdown](#markdown)
+  - [Go](#go)
+  - [C](#c)
 - [Features](#features)
+- [Troubleshooting](#troubleshooting)
 - [Contributing](#contributing)
+<!--toc:end-->
 
 ## Installation
 
@@ -47,14 +62,14 @@ Copy the configuration files to the Helix configuration directory:
 
 ```sh
 mkdir -p ~/.config/helix
-cp config.toml languages.toml ~/.config/helix/
+cp -r . ~/.config/helix/
 ```
 
 ### Step 4: Fetch & Build languages grammar (tree-sitter)
 
 ```sh
-sudo hx --grammar fetch
-sudo hx --grammar build
+hx --grammar fetch
+hx --grammar build
 ```
 
 ## Installing Language Servers and Formatters
@@ -145,6 +160,36 @@ sudo apt install clang-format
 - **Cursor Shapes**: Custom cursor shapes for different modes (normal, insert, select).
 - **Language Server Support**: Integrated LSP support for enhanced code completion, linting, and diagnostics.
 - **Statusline Customization**: Customizable statusline with various indicators.
+
+## Troubleshooting
+
+- If you encounter issues with the configuration, ensure that all dependencies are installed correctly.
+- Check the Helix documentation for any updates or changes in configuration options.
+- You can check your configuration for specific language by checking helix health:
+
+```sh
+$ hx --health python
+Configured language servers:
+  ✓ pyright-langserver: /usr/bin/pyright-langserver
+  ✓ pylsp: /home/username/.local/bin/pylsp
+Configured debug adapter: None
+Configured formatter: autopep8
+Binary for formatter: /home/username/.local/bin/autopep8
+Tree-sitter parser: ✓
+Highlight queries: ✓
+Textobject queries: ✓
+Indent queries: ✓
+
+$ hx --health dockerfile
+Configured language servers:
+  ✘ docker-langserver: 'docker-langserver' not found in $PATH
+Configured debug adapter: None
+Configured formatter: None
+Tree-sitter parser: ✓
+Highlight queries: ✓
+Textobject queries: ✓
+Indent queries: ✘
+```
 
 ## Contributing
 

@@ -2,6 +2,7 @@
 theme = "github_dark"
 
 [editor]
+end-of-line-diagnostics = "hint"
 line-number = "relative"    # Displays line numbers relative to the current line
 color-modes = true          # Enables different color modes based on the file type
 auto-pairs = true           # Automatically inserts matching pairs
@@ -10,10 +11,27 @@ true-color = true           # Enables true color support
 mouse = true                # Enables mouse support
 bufferline = "multiple"     # Displays multiple buffers in the buffer line
 cursorline = true           # Highlights the current line
-rulers = [120]              # Adds a visual ruler at column 120
+rulers = [200]              # Adds a visual ruler at column 200
 auto-completion = true      # Enables auto-completion
 completion-replace = true   # Replaces text with selected completion
 completion-timeout = 3      # Sets the timeout for completions to 3 seconds
+
+# Key Bindings Configuration
+[keys.normal]
+esc = ["collapse_selection", "keep_primary_selection"] # Escape key collapses selection and keeps primary selection
+# Buffer navigation (Neovim style)
+"L" = ":buffer-next"            # Next buffer (like :bn)
+"H" = ":buffer-previous"        # Previous buffer (like :bp)
+"Q" = ":buffer-close"           # Close buffer (like :bd)
+"X" = ":buffer-close-others"    # Close other buffers (like :bd)
+
+# Page up/down with Shift+Up/Down
+"S-up" = "page_up"
+"S-down" = "page_down"
+
+# Optional: Add Shift+Left/Right for horizontal page scrolling
+"S-left" = "half_page_up"
+"S-right" = "half_page_down"
 
 # Indentation Guides Configuration
 [editor.indent-guides]
